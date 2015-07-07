@@ -29,7 +29,6 @@ class ListingAppointmentsTest < ActionDispatch::IntegrationTest
     assert_equal 200, response.status
 
     appt_response = JSON.parse(response.body)
-    puts "#{appt_response}"
     assert_equal appointment.first_name, appt_response["first_name"]
   end
 end
