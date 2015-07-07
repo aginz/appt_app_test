@@ -6,8 +6,6 @@ class CreateAppointments < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :comments
-
-      t.timestamps null: false
     end
   end
 end
