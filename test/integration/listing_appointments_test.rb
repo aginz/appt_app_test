@@ -16,19 +16,19 @@ class ListingAppointmentsTest < ActionDispatch::IntegrationTest
     get '/appointments?start_time=11/11/15 9:00'
     assert_equal 200, response.status
 
-    appointments = JSON.parse(response.body, symbolize_first_names: true)
+    appointments = json(response.body)
     first_names = appointments.collect { |a| a[:first_name] }
     assert_includes first_names, 'nov_test'
     refute_includes first_names, 'oct_test'
   end
   
-  test '/appointments/#{appointment.id}' do
+  test 'returns appointment by id' do
     appointment = Appointment.create!(start_time: '11/11/15 9:00', end_time: '11/11/15 9:30', first_name: 'nov_test', last_name: 'nov_example', comments: '')
     
     get "/appointments/#{appointment.id}"
     assert_equal 200, response.status
 
-    appt_response = JSON.parse(response.body, symbolize_first_names: true)
-    assert_equal appointment.first_name, zombie_response[:first_name] 
+    appt_response = json(response.body)
+    assert_equal appointment.first_name, appt_response[:first_name] 
   end
 end
