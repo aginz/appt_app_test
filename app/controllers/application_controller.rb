@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :format_time
+  helper_method :format_time, :string_time
 
   def format_time(time)
     time.include?('%20') ? time.gsub('%20', ' ') : time
