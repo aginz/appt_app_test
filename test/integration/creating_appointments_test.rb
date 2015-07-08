@@ -16,5 +16,5 @@ class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
     assert_equal Mime::JSON, response.content_type
 
     appointment = JSON.parse(resonse.body)
-    assert_equal appointment_url(episode[:id], response.location
+    assert_equal appointment_url(episode[:id]), response.location
   end
