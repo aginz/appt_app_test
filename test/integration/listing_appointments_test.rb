@@ -13,7 +13,7 @@ class ListingAppointmentsTest < ActionDispatch::IntegrationTest
     jack = Appointment.create!(start_time: '11/11/15 9:00', end_time: '11/11/15 9:30', first_name: 'Jack', last_name: 'Example', comments: '')
     jill = Appointment.create!(start_time: '10/20/15 10:00', end_time: '10/11/15 10:30', first_name: 'Jill', last_name: 'Example', comments: '')
 
-    get '/appointments?start_time=11/11/15%209:00'
+    get "/appointments?start_time=11/11/15%209:00"
     assert_equal 200, response.status
 
     appointments = JSON.parse(response.body)
@@ -31,5 +31,11 @@ class ListingAppointmentsTest < ActionDispatch::IntegrationTest
 
     appt_response = JSON.parse(response.body)
     assert_equal appointment.first_name, appt_response["first_name"]
+  end
+
+  test 'returns appointment in JSON' do
+    get '/appointments'
+    assert_equal 200, response.status
+    assert_equal Mime::JSON, response.content_type
   end
 end
