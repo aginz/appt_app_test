@@ -1,9 +1,8 @@
 class AppointmentsController < ApplicationController
   def index
-    appointments = Appointment.all
-    
+    @appointments = Appointment.all
     respond_to do |format|
-      format.json { render json: appointments, status: 200 }
+      format.json
     end
   end
 end
