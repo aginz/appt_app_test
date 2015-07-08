@@ -6,7 +6,7 @@ module Api
         start_time = format_time(start_time)
         beg_day = start_time.beginning_of_day
         end_day = start_time.end_of_day
-        appointments = appointments.where(start_time: string_time(beg_day)..string_time(end_day))
+        appointments = Appointment.where(start_time: string_time(beg_day)..string_time(end_day))
       end
       render json: appointments, status: 200
     end
