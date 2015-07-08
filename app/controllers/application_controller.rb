@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
 
   def format_time(time)
     time.include?('%20') ? time.gsub('%20', ' ') : time #Convert URL query to proper format

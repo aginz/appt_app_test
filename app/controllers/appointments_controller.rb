@@ -2,14 +2,16 @@ class AppointmentsController < ApplicationController
   def index
     @appointments = Appointment.all
     respond_to do |format|
-      format.json
+      format.json { render json: @appointments }
     end
   end
 
   def create
-    appointment = Appointment.new(appointment_params)
-    if appointment.save
-      render json: appointment, status: 201, location: appointment
+    @appointment = Appointment.new(appointment_params)
+    if @appointment.save
+      render json: @appointment, status: 201, location: @appointment
+    else
+      render json: @appointment.errors, status: 422
     end
   end
 
