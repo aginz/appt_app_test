@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def format_time(time)
-    time.include?('%20') ? time.gsub('%20', ' ') : time
+    time.include?('%20') ? time.gsub('%20', ' ') : time #Convert URL query to proper format
     Time.strptime(time, "%m/%d/%y %k:%M") #Converts string mm/dd/yy to time format
   end
 

@@ -10,13 +10,14 @@ class ListingAppointmentsTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns appointments filtered by start_time' do
-    test_appt1 = Appointment.create!(start_time: '11/11/15 9:00', end_time: '11/11/15 9:30', first_name: 'Jack', last_name: 'Example', comments: '')
-    test_appt2 = Appointment.create!(start_time: '10/11/15 10:00', end_time: '10/11/15 10:30', first_name: 'Jill', last_name: 'Example', comments: '')
+    jack = Appointment.create!(start_time: '11/11/15 9:00', end_time: '11/11/15 9:30', first_name: 'Jack', last_name: 'Example', comments: '')
+    jill = Appointment.create!(start_time: '10/20/15 10:00', end_time: '10/11/15 10:30', first_name: 'Jill', last_name: 'Example', comments: '')
 
-    get '/appointments?start_time=11/11/15 9:00'
+    get '/appointments?start_time=11/11/15%209:00'
     assert_equal 200, response.status
 
     appointments = JSON.parse(response.body)
+    p "#{appointments}"
     first_names = appointments.collect { |a| a["first_name"] }
     assert_includes first_names, 'Jack'
     refute_includes first_names, 'Jill'
