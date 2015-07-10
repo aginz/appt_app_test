@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: [:update]
+  before_action :set_appointment, only: [:update, :destroy]
   
   def index
     @appointments = Appointment.all
@@ -21,7 +21,14 @@ class AppointmentsController < ApplicationController
   def update
     if @appointment.update(appointment_params)
       render json: @appointment, status: 200
+    else
+      render json: @appointment.errors, status: 422
     end
+  end
+
+  def destroy
+    @appointment.destroy
+    head 204
   end
 
   private
