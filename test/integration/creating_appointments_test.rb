@@ -22,6 +22,8 @@ class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 
     assert_equal 422, response.status
+    appointment = JSON.parse(response.body, symbolize_names: true)
+    p "#{appointment}"
     assert_equal Mime::JSON, response.content_type
   end
 end
