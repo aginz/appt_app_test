@@ -1,0 +1,11 @@
+<h1>Listing All Appointments</h1>
+
+<h3>Filter by Day</h3>
+
+<% @appointments.each do |appointment| %>
+  <%= appointment.start_time %>
+  <%= appointment.end_time %>
+  <%= appointment.first_name %>
+  <%= appointment.last_name %>
+<% end %>
+

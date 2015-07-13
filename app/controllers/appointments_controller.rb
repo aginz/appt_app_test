@@ -2,9 +2,18 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:update, :destroy]
   
   def index
-    @appointments = Appointment.all
+    if start_time = params[:start_time]
+      start_time = format_time(start_time)
+      beg_day = start_time.beginning_of_day
+      end_day = start_time.end_of_day
+      @appointments = Appointment.where(start_time: string_time(beg_day)..string_time(end_day))
+    else     
+      @appointments = Appointment.all
+    end
+    
     respond_to do |format|
-      format.json { render json: @appointments }
+      format.json { render json: @appointments } 
+      format.html { render html: @appointments }
     end
   end
 
@@ -35,6 +44,7 @@ class AppointmentsController < ApplicationController
     def set_appointment
       @appointment = Appointment.find(params[:id])
     end  
+
     def appointment_params
       params.require(:appointment).permit(:start_time, :end_time, :first_name, :last_name, :comments)
     end
