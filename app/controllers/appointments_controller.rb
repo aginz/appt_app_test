@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: [:update, :destroy]
+  before_action :set_appointment, only: [:show, :update, :destroy]
   
   def index
     if start_time = params[:start_time]
@@ -7,18 +7,19 @@ class AppointmentsController < ApplicationController
       beg_day = start_time.beginning_of_day
       end_day = start_time.end_of_day
       @appointments = Appointment.where(start_time: string_time(beg_day)..string_time(end_day))
-    else     
+    else 
       @appointments = Appointment.all
     end
-    
-    respond_to do |format|
-      format.json { render json: @appointments } 
-      format.html { render html: @appointments }
-    end
+    render json: @appointments, status: 200
   end
 
+  def show
+    render json: @appointment, status: 200
+  end
+  
   def create
     @appointment = Appointment.new(appointment_params)
+    @appointments = Appointment.all
     if @appointment.save
       # head :no_content, location: @appointment
       render json: @appointment, status: :created, location: @appointment
