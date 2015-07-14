@@ -6,6 +6,8 @@ class UpdatingAppointmentsTest < ActionDispatch::IntegrationTest
    { appointment: {start_time: "10/31/15 9:00", end_time: "10/31/15 9:30" } }.to_json,
    { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 
+   @appointment = JSON.parse(response.body)
+   p "UPDATING ======= #{@appointment}"
    assert_equal 200, response.status
    assert_equal "10/31/15 9:00", @appointment.reload.start_time
    assert_equal "10/31/15 9:30", @appointment.reload.end_time

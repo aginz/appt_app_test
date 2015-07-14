@@ -1,5 +1,7 @@
 class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
   
+  setup { @appointment = Appointment.create!(start_time: "11/12/15 9:00", end_time: "11/12/15 9:30", first_name: "Harry", last_name: "Potter") }
+  
   test 'creates appointments' do
     post '/appointments',
       { appointment:
@@ -22,8 +24,17 @@ class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 
     assert_equal 422, response.status
-    appointment = JSON.parse(response.body, symbolize_names: true)
-    p "#{appointment}"
+    assert_equal Mime::JSON, response.content_type
+  end
+
+  test 'does not create appointment with start time that already exists' do
+    post '/appointments',
+      { appointment:
+        { start_time: "11/12/15 9:00", end_time: "11/12/15 9:30", first_name: "Harry", last_name: "Potter", comments: "" }
+      }.to_json,
+      { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
+
+    assert_equal 422, response.status
     assert_equal Mime::JSON, response.content_type
   end
 end
