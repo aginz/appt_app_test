@@ -19,7 +19,6 @@ class AppointmentsController < ApplicationController
   
   def create
     @appointment = Appointment.new(appointment_params)
-    @appointments = Appointment.all
     if @appointment.save
       # head :no_content, location: @appointment
       render json: @appointment, status: :created, location: @appointment
