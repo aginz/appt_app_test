@@ -20,7 +20,6 @@ class AppointmentsController < ApplicationController
   def create
     @appointment = Appointment.new(appointment_params)
     if @appointment.save
-      # head :no_content, location: @appointment
       render json: @appointment, status: :created, location: @appointment
     else
       render json: @appointment.errors, status: 422

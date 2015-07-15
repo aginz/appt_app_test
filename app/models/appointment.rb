@@ -1,7 +1,9 @@
 class Appointment < ActiveRecord::Base
   validates :start_time, :end_time, :first_name, :last_name, presence: true
-  validate :appointment_cannot_be_in_the_past, :appointment_cannot_exist, on: :create
-  validate :appointment_cannot_be_in_the_past, :appointment_cannot_exist, on: :update
+  validate :appointment_cannot_be_in_the_past, on: :create
+  validate :appointment_cannot_be_in_the_past, on: :update
+  validate :appointment_cannot_exist, on: :create
+  validate :appointment_cannot_exist, on: :update
 
   private
   def appointment_cannot_be_in_the_past
@@ -14,7 +16,7 @@ class Appointment < ActiveRecord::Base
 
   def appointment_cannot_exist
     appointment_time = @appointment.start_time
-    if Appointment.find_by(start_time: appointment_time) == !nil
+    if Appointment.find_by(start_time: appointment_time).start_time == appointment_time
       errors.add(:start_time, "appointment already exists")
     end
   end
