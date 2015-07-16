@@ -1,8 +1,20 @@
-== README
+== DEPLOYING THIS API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To get started, clone this repo and ```bundle```.
 
+Before pushing the app to heroku, comment out the validation that checks if the appointment is created in the past (needed to import prior appointment data).
+
+Push to heroku and migrate the database.
+
+Import the csv appointment data by running ```heroku run rake import_appointments_csv:create_appointments```
+
+Uncomment the validation checking for past appointments.
+
+Push to heroku again.
+
+The API is available at appt-test.herokuapp.com/appointments
+
+== WHAT THIS API DOES
 Things you may want to cover:
 
 * Ruby version

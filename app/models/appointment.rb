@@ -1,7 +1,7 @@
 class Appointment < ActiveRecord::Base
   validates :start_time, :end_time, :first_name, :last_name, presence: true
   validates :start_time, :end_time, uniqueness: true
-  validate :appointment_cannot_be_in_the_past
+  # validate :appointment_cannot_be_in_the_past
   validate :end_time_cannot_be_before_start_time
 
   private
