@@ -7,7 +7,12 @@ class AppointmentsController < ApplicationController
       beg_day = start_time.beginning_of_day
       end_day = start_time.end_of_day
       @appointments = Appointment.where(start_time: beg_day.to_s..end_day.to_s)
-    else 
+    elsif end_time = params[:end_time]
+      end_time = convert_time_from_string(end_time)
+      beg_day = end_time.beginning_of_day
+      end_day = end_time.end_of_day
+      @appointments = Appointment.where(end_time: beg_day.to_s..end_day.to_s) 
+    else  
       @appointments = Appointment.all
     end
     render json: @appointments, status: 200

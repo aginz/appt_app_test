@@ -12,7 +12,7 @@ Uncomment the validation checking for past appointments.
 
 Push to heroku again.
 
-The API is available at appt-test.herokuapp.com/appointments
+The API is available at appt-api.herokuapp.com/appointments
 
 == WHAT THIS API DOES
 Things you may want to cover:
