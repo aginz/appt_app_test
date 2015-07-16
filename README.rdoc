@@ -1,6 +1,10 @@
-== DEPLOYING THIS API
+== GETTING STARTED
 
 To get started, clone this repo and ```bundle```.
+
+Run ```rake``` to run through integration tests. Only integration tests were used for this exercise.
+
+== DEPLOYING THIS API
 
 Before pushing the app to heroku, comment out the validation that checks if the appointment is created in the past (needed to import prior appointment data).
 
@@ -12,29 +16,16 @@ Uncomment the validation checking for past appointments.
 
 Push to heroku again.
 
-The API is available at appt-api.herokuapp.com/appointments
+The API is available at appt-api.herokuapp.com/appointments.
 
 == WHAT THIS API DOES
-Things you may want to cover:
 
-* Ruby version
+* CRUD actions for appointments rendering JSON and HTTP status codes
 
-* System dependencies
+* Validates uniqueness of appointments, presence of params, appointments not created in past, end time not before start time
 
-* Configuration
+* Lists all appointments and filter appointments in a day by start/end_time using DateTime string format
 
-* Database creation
+== NEXT STEPS
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Construct simple interface to consume API to make sure time is provided in the correct DateTime format
