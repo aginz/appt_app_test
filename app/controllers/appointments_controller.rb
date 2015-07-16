@@ -3,10 +3,10 @@ class AppointmentsController < ApplicationController
   
   def index
     if start_time = params[:start_time]
-      start_time = format_time(start_time)
+      start_time = convert_time_from_string(start_time)
       beg_day = start_time.beginning_of_day
       end_day = start_time.end_of_day
-      @appointments = Appointment.where(start_time: string_time(beg_day)..string_time(end_day))
+      @appointments = Appointment.where(start_time: beg_day.to_s..end_day.to_s)
     else 
       @appointments = Appointment.all
     end

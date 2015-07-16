@@ -21,7 +21,7 @@ class ListingAppointmentsTest < ActionDispatch::IntegrationTest
   end
   
   test 'returns appointment by id' do
-    appointment = Appointment.create!(start_time: '11/11/15 9:00', end_time: '11/11/15 9:30', first_name: 'Jack', last_name: 'Example', comments: '')
+    appointment = Appointment.create!(start_time: "2015-11-01T09:00:00+00:00", end_time: "2015-11-01T09:05:00+00:00", first_name: 'Jack', last_name: 'Example', comments: '')
     
     get "/appointments/#{appointment.id}"
     assert_equal 200, response.status
