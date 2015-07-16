@@ -1,11 +1,11 @@
 class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
   
-  setup { @appointment = Appointment.create!(start_time: "11/12/15 9:00", end_time: "11/12/15 9:30", first_name: "Harry", last_name: "Potter") }
+  setup { @appointment = Appointment.create!(start_time: "2016-01-01T09:00:00+00:00", end_time: "2016-01-01T09:05:00+00:00", first_name: "Harry", last_name: "Potter") }
   
   test 'creates appointments' do
     post '/appointments',
       { appointment:
-        { start_time: "1/1/15 9:00", end_time: "1/1/15 9:30", first_name: "Jack", last_name: "Example", comments: "" }
+        { start_time: "2016-01-01T09:00:00+00:00", end_time: "2016-01-01T09:05:00+00:00", first_name: "Jack", last_name: "Example", comments: "" }
       }.to_json,
       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 
@@ -19,7 +19,7 @@ class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
   test 'does not create appointments with start time in past' do
     post '/appointments',
       { appointment:
-        { start_time: "1/1/14 9:00", end_time: "1/1/14 9:05", first_name: "Jack", last_name: "Example", comments: "" }
+        { start_time: "2014-01-01T09:00:00+00:00", end_time: "2014-01-01T09:05:00+00:00", first_name: "Jack", last_name: "Example", comments: "" }
       }.to_json,
       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 
@@ -30,7 +30,7 @@ class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
   test 'does not create appointment with start time that already exists' do
     post '/appointments',
       { appointment:
-        { start_time: "11/12/15 9:00", end_time: "11/12/15 9:30", first_name: "Harry", last_name: "Potter", comments: "" }
+        { start_time: "2016-01-01T09:00:00+00:00", end_time: "2016-01-01T09:05:00+00:00", first_name: "Harry", last_name: "Potter", comments: "" }
       }.to_json,
       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 
