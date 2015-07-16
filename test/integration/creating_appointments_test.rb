@@ -5,7 +5,7 @@ class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
   test 'creates appointments' do
     post '/appointments',
       { appointment:
-        { start_time: "2016-01-01T09:00:00+00:00", end_time: "2016-01-01T09:05:00+00:00", first_name: "Jack", last_name: "Example", comments: "" }
+        { start_time: "2016-12-01T09:00:00+00:00", end_time: "2016-12-01T09:05:00+00:00", first_name: "Jack", last_name: "Example", comments: "" }
       }.to_json,
       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 
@@ -22,7 +22,7 @@ class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
         { start_time: "2014-01-01T09:00:00+00:00", end_time: "2014-01-01T09:05:00+00:00", first_name: "Jack", last_name: "Example", comments: "" }
       }.to_json,
       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
-
+    
     assert_equal 422, response.status
     assert_equal Mime::JSON, response.content_type
   end
@@ -31,6 +31,17 @@ class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
     post '/appointments',
       { appointment:
         { start_time: "2016-01-01T09:00:00+00:00", end_time: "2016-01-01T09:05:00+00:00", first_name: "Harry", last_name: "Potter", comments: "" }
+      }.to_json,
+      { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
+
+    assert_equal 422, response.status
+    assert_equal Mime::JSON, response.content_type
+  end
+  
+  test 'does not create appointments where end time is less than start time' do
+    post '/appointments',
+      { appointment:
+        { start_time: "2016-02-01T09:00:00+00:00", end_time: "2016-02-01T08:05:00+00:00", first_name: "Harry", last_name: "Potter", comments: "" }
       }.to_json,
       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 

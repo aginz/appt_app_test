@@ -5,14 +5,13 @@ class ApplicationController < ActionController::Base
     # time.include?('%20') ? time.gsub('%20', ' ') : time #Convert URL query to proper format
     # convert_time(time)
   # end
-
+  
+  #Converts to DateTime object
   def convert_time_from_string(old_time)
-    DateTime.parse(old_time) #Converts to DateTime object
+    DateTime.parse(old_time) 
   end
 
   # def string_time(time)
     # time.strftime("%m/%e/%y %k:%M") #Convert time to string format mm/dd/yy
   # end  
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
 end
