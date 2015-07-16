@@ -41,7 +41,7 @@ class CreatingAppointmentsTest < ActionDispatch::IntegrationTest
   test 'does not create appointments where end time is less than start time' do
     post '/appointments',
       { appointment:
-        { start_time: "2016-02-01T09:00:00+00:00", end_time: "2016-02-01T08:05:00+00:00", first_name: "Harry", last_name: "Potter", comments: "" }
+        { start_time: "2016-02-01T08:10:00+00:00", end_time: "2016-02-01T08:05:00+00:00", first_name: "Harry", last_name: "Potter", comments: "" }
       }.to_json,
       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 
