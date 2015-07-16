@@ -20,7 +20,7 @@ namespace :import_appointments_csv do
     
     csv = CSV.parse(csv_text, headers: true)
     csv.each do |row|
-      Appointment.create!(params_from_row(row))
+      Appointment.where().first_or_create!(params_from_row(row))
     end
   end
 end
