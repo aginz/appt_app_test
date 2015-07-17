@@ -1,22 +1,22 @@
 == GETTING STARTED
 
-To get started, clone this repo and `bundle`.
+To get started, clone this repo and <b>bundle</b>
 
-Run `rake` to run through integration tests. Only integration tests were used for this exercise.
+Run <b>rake</b> to run through integration tests. Only integration tests were used for this exercise.
 
 == DEPLOYING THIS API
 
-Before pushing the app to heroku, comment out the validation that checks if the appointment is created in the past (needed to import prior appointment data).
+* Before pushing the app to heroku, comment out the validation that checks if the appointment is created in the past (needed to import prior appointment data).
 
-Push to heroku and migrate the database.
+* Push to heroku and migrate the database.
 
-Import the csv appointment data by running `heroku run rake import_appointments_csv:create_appointments`
+* Import the csv appointment data by running <b>heroku run rake import_appointments_csv:create_appointments</b>
 
-Uncomment the validation checking for past appointments.
+* Uncomment the validation checking for past appointments.
 
-Push to heroku again.
+* Push to heroku again.
 
-The API is available at appt-api.herokuapp.com/appointments.
+* The API is available at appt-api.herokuapp.com/appointments.
 
 == WHAT THIS API DOES
 
