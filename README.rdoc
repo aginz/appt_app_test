@@ -36,4 +36,4 @@ Run <b>rake</b> to run through integration tests. Only integration tests were us
 
 * API versioning
 
-* Wrap API in separate classes
+* Wrap API in separate class? API subdomain?
