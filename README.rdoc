@@ -1,8 +1,8 @@
 == GETTING STARTED
 
-To get started, clone this repo and ```bundle```.
+To get started, clone this repo and `bundle`.
 
-Run ```rake``` to run through integration tests. Only integration tests were used for this exercise.
+Run `rake` to run through integration tests. Only integration tests were used for this exercise.
 
 == DEPLOYING THIS API
 
@@ -10,7 +10,7 @@ Before pushing the app to heroku, comment out the validation that checks if the 
 
 Push to heroku and migrate the database.
 
-Import the csv appointment data by running ```heroku run rake import_appointments_csv:create_appointments```
+Import the csv appointment data by running `heroku run rake import_appointments_csv:create_appointments`
 
 Uncomment the validation checking for past appointments.
 
@@ -26,6 +26,14 @@ The API is available at appt-api.herokuapp.com/appointments.
 
 * Lists all appointments and filter appointments in a day by start/end_time using DateTime string format
 
-== NEXT STEPS
+* This API responds to DateTime.to_s format
 
-* Construct simple interface to consume API to make sure time is provided in the correct DateTime format
+== NEXT STEPS / POSSIBLE REFACTORING
+
+* Construct simple interface to consume API
+
+* Refactor import of csv data? Currently, need to comment out past appointment validation to import data.
+
+* API versioning
+
+* Wrap API in separate classes
